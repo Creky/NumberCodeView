@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.lkp.numbercodeview.BaseNumberCodeView;
 import com.lkp.numbercodeview.R;
@@ -21,6 +22,7 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
     private ImageView mCloseImageView;
     private OnHideBottomLayoutListener mOnHideBottomLayoutListener;
     private float mDisplayHeight;
+    private TextView codeViewTitle;
 
     public BottomSheetNumberCodeView(Context context) {
         super(context, null);
@@ -36,6 +38,7 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
         View view = LayoutInflater.from(mContext).inflate(R.layout.view_bottom_sheet_input_code, null);
         mBottomNumberCodeLayout = (LinearLayout) view.findViewById(R.id.bottom_number_code_layout);
         mCloseImageView = (ImageView) view.findViewById(R.id.close_bottom_number_code_view);
+        codeViewTitle = view.findViewById(R.id.code_view_title);
         mCloseImageView.setOnClickListener(this);
         return view;
     }
@@ -48,7 +51,7 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
         hideNumberCodeLayout();
     }
 
-    public boolean isNumberCodeLayoutShowing(){
+    public boolean isNumberCodeLayoutShowing() {
         if (mBottomNumberCodeLayout != null) {
             return mBottomNumberCodeLayout.getVisibility() == View.VISIBLE;
         } else {
@@ -56,7 +59,11 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
         }
     }
 
-    public void showNumberCodeLayout(){
+    public void setCodeViewTitle(String title) {
+        codeViewTitle.setText(title);
+    }
+
+    public void showNumberCodeLayout() {
         if (mBottomNumberCodeLayout == null) {
             return;
         }
@@ -67,7 +74,7 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
         yTranslationAnimator.start();
     }
 
-    public void hideNumberCodeLayout(){
+    public void hideNumberCodeLayout() {
         if (mBottomNumberCodeLayout == null) {
             return;
         }
@@ -101,7 +108,7 @@ public class BottomSheetNumberCodeView extends BaseNumberCodeView implements Vie
         yTranslationAnimator.start();
     }
 
-    public void setOnHideBottomLayoutListener(OnHideBottomLayoutListener onHideLayoutListener){
+    public void setOnHideBottomLayoutListener(OnHideBottomLayoutListener onHideLayoutListener) {
         mOnHideBottomLayoutListener = onHideLayoutListener;
     }
 

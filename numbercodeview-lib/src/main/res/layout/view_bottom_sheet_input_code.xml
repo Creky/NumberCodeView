@@ -27,12 +27,13 @@
                 android:src="@drawable/bg_gray_back_button"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="@color/text_color"
-                android:textSize="16sp"
-                android:text="请输入"/>
+                    android:id="@+id/code_view_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/text_color"
+                    android:textSize="16sp"
+                    android:text="请输入"/>
 
         </RelativeLayout>
 

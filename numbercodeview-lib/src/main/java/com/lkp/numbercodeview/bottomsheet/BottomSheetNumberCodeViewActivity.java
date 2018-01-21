@@ -14,16 +14,24 @@ import com.lkp.numbercodeview.R;
  * Created by linkaipeng on 16/8/2.
  */
 public class BottomSheetNumberCodeViewActivity extends AppCompatActivity
-    implements BaseNumberCodeView.OnInputNumberCodeCallback,
+        implements BaseNumberCodeView.OnInputNumberCodeCallback,
         BottomSheetNumberCodeView.OnHideBottomLayoutListener {
 
     public static final int REQUEST_CODE_SHOW_BOTTOM_NUMBER_VIEW = 1001;
     public static final String KEY_DATA_NUMBER = "KeyDataNumber";
     private static final String KEY_DATA_IS_PASSWORD = "KeyDataIsPassword";
+    private static final String KEY_DATA_CODE_VIEW_TITLE = "KEY_DATA_CODE_VIEW_TITLE";
 
-    public static void show(Activity activity, boolean isPassword){
+    public static void show(Activity activity, boolean isPassword) {
         Intent intent = new Intent(activity, BottomSheetNumberCodeViewActivity.class);
         intent.putExtra(KEY_DATA_IS_PASSWORD, isPassword);
+        activity.startActivityForResult(intent, REQUEST_CODE_SHOW_BOTTOM_NUMBER_VIEW);
+    }
+
+    public static void show(Activity activity, boolean isPassword, String title) {
+        Intent intent = new Intent(activity, BottomSheetNumberCodeViewActivity.class);
+        intent.putExtra(KEY_DATA_IS_PASSWORD, isPassword);
+        intent.putExtra(KEY_DATA_CODE_VIEW_TITLE, title);
         activity.startActivityForResult(intent, REQUEST_CODE_SHOW_BOTTOM_NUMBER_VIEW);
     }
 
@@ -37,13 +45,15 @@ public class BottomSheetNumberCodeViewActivity extends AppCompatActivity
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         boolean isPassword = getIntent().getBooleanExtra(KEY_DATA_IS_PASSWORD, true);
+        String codeViewTitle = getIntent().getStringExtra(KEY_DATA_CODE_VIEW_TITLE);
         mNumberCodeView = (BottomSheetNumberCodeView) findViewById(R.id.bottom_sheet_number_code_view);
         mNumberCodeView.setNumberCodeCallback(this);
         mNumberCodeView.setOnHideBottomLayoutListener(this);
         mNumberCodeView.setIsPassword(isPassword);
         mNumberCodeView.showNumberCodeLayout();
+        mNumberCodeView.setCodeViewTitle(codeViewTitle);
     }
 
     @Override

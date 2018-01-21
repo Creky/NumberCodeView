@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
 import com.lkp.numbercodeview.BaseNumberCodeView;
 import com.lkp.numbercodeview.R;
@@ -53,7 +54,9 @@ public class BottomSheetNumberCodeViewActivity extends AppCompatActivity
         mNumberCodeView.setOnHideBottomLayoutListener(this);
         mNumberCodeView.setIsPassword(isPassword);
         mNumberCodeView.showNumberCodeLayout();
-        mNumberCodeView.setCodeViewTitle(codeViewTitle);
+        if (!TextUtils.isEmpty(codeViewTitle)) {
+            mNumberCodeView.setCodeViewTitle(codeViewTitle);
+        }
     }
 
     @Override

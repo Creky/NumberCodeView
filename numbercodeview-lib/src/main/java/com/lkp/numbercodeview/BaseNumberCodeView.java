@@ -1,20 +1,16 @@
 package com.lkp.numbercodeview;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import android.widget.*;
 
 /**
  * Created by linkaipeng on 16/8/2.
@@ -133,6 +129,19 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
                 mNumberViewList.get(i).setText("");
             }
         }
+    }
+
+    public void setPassword(String password) {
+        mNumberStack.clear();
+        for (int i = 0, j = Math.min(password.length(), mNumberViewList.size()); i < j; i++) {
+            mNumberStack.push((int) password.charAt(i));
+            if (mIsPassword) {
+                mNumberViewList.get(i).setText(PASSWORD_NUMBER_SYMBOL);
+            } else {
+                mNumberViewList.get(i).setText(String.valueOf(password.charAt(i)));
+            }
+        }
+        onResult(password);
     }
 
     public void setNumberCodeCallback(OnInputNumberCodeCallback callback){

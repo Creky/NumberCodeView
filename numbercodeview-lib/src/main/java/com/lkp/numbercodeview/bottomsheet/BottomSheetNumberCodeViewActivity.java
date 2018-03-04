@@ -36,7 +36,7 @@ public class BottomSheetNumberCodeViewActivity extends AppCompatActivity
         activity.startActivityForResult(intent, REQUEST_CODE_SHOW_BOTTOM_NUMBER_VIEW);
     }
 
-    private BottomSheetNumberCodeView mNumberCodeView;
+    private static BottomSheetNumberCodeView mNumberCodeView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +56,12 @@ public class BottomSheetNumberCodeViewActivity extends AppCompatActivity
         mNumberCodeView.showNumberCodeLayout();
         if (!TextUtils.isEmpty(codeViewTitle)) {
             mNumberCodeView.setCodeViewTitle(codeViewTitle);
+        }
+    }
+
+    public static void setPassword(String password) {
+        if (mNumberCodeView != null) {
+            mNumberCodeView.setPassword(password);
         }
     }
 

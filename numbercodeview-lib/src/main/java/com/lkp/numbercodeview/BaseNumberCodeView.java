@@ -57,7 +57,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
         mIsPassword = array.getBoolean(R.styleable.NumberCodeView_isPassword, false);
     }
 
-    private void initView(){
+    private void initView() {
         View view = createView();
         addView(view);
         mNumbersGridView = (ExpandGridView) view.findViewById(R.id.numbers_gridView);
@@ -77,7 +77,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
         mNumberViewList.add(mNumber6TextView);
     }
 
-    public void setIsPassword(boolean isPassword){
+    public void setIsPassword(boolean isPassword) {
         mIsPassword = isPassword;
     }
 
@@ -92,14 +92,20 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
                 return;
             }
             mNumberStack.pop();
+            mNumberViewList.get(mNumberStack.size()).setText(null);
         } else {
             if (position == NUMBER_BUTTON_ZERO) {
                 mNumberStack.push(0);
             } else {
                 mNumberStack.push(++position);
             }
+            if (mIsPassword) {
+                mNumberViewList.get(mNumberStack.size() - 1).setText(PASSWORD_NUMBER_SYMBOL);
+            } else {
+                mNumberViewList.get(mNumberStack.size() - 1).setText(String.valueOf(mNumberStack.get(mNumberStack.size() - 1)));
+            }
         }
-        refreshNumberViews();
+
         //input 6 numbers complete
         if (mNumberStack.size() == NUMBER_COUNT) {
             StringBuilder codeBuilder = new StringBuilder();
@@ -110,12 +116,12 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
         }
     }
 
-    protected void restoreViews(){
+    protected void restoreViews() {
         mNumberStack.clear();
         refreshNumberViews();
     }
 
-    private void refreshNumberViews(){
+    private void refreshNumberViews() {
         for (int i = 0, size = mNumberViewList.size(); i < size; i++) {
             int numSize = mNumberStack.size();
             if (i < numSize) {
@@ -144,7 +150,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
         onResult(password);
     }
 
-    public void setNumberCodeCallback(OnInputNumberCodeCallback callback){
+    public void setNumberCodeCallback(OnInputNumberCodeCallback callback) {
         this.mCallback = callback;
     }
 
@@ -153,6 +159,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
     }
 
     abstract protected View createView();
+
     abstract protected void onResult(String code);
 
     private class NumbersAdapter extends BaseAdapter {
@@ -207,7 +214,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
         }
     }
 
-    private static class ItemHolder{
+    private static class ItemHolder {
         RelativeLayout mRootView;
         TextView mNumberTextView;
         ImageView mDeleteImageView;

@@ -6,7 +6,6 @@
         android:supportsRtl="true">
 
         <activity android:name=".bottomsheet.BottomSheetNumberCodeViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Translucent"/>
 
     </application>

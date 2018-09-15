@@ -1,15 +1,11 @@
-####   [中文文档](https://github.com/linkaipeng/NumberCodeView/blob/master/README_zh.md)
-
 # NumberCodeView
-A number input view which like input password in alipay or wechat pay.
+一个类似微信支付和支付宝支付的时候输入密码面板的控件。
 
-# Usage
+# 使用方式
 
-### Normal Style
+### 普通样式
 
-Normal, start to an activity which include the NumberCodeView.
-
-Add to your '.xml' file.
+正常情况下，你可以把控件的声明写到你的 '.xml' 文件里面。
 
 ```
 <com.lkp.numbercodeview.normal.NumberCodeView
@@ -20,24 +16,24 @@ Add to your '.xml' file.
         numbercodeview:isPassword="true"/>
 ```
 
-Use the `numbercodeview:isPassword` attribute.
+可以使用 `numbercodeview:isPassword` 这个属性去控制是否是密码，密码的话会用黑点替代数字。
 
-### BottomSheet Style
+### 底部面板样式
 
-Bottom sheet style, an activity with dialog style. Popup from bottom of screen.
+使用底部样式，那么久可以从界面的底部弹出来。
 
-Call Bottom sheet style NumberCodeView with a single line code. Like this:
+可以通过以下代码进行调用:
 
 ```
 BottomSheetNumberCodeViewActivity.show(this, mIsPassword);
 ```
 
-### `isPassword` Attribute
+### `isPassword` 属性
 
-If it is password, the number will be replaced with symbol ●
+如果是密码，那么输入框里面的数字将会用 ● 取代。
 
 
-# Screenshots
+# 截屏
 
 ![](https://github.com/linkaipeng/NumberCodeView/raw/master/screenshots/screenshot01.png)
 ![](https://github.com/linkaipeng/NumberCodeView/raw/master/screenshots/screenshot02.png)

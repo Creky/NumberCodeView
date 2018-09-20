@@ -93,7 +93,7 @@ public abstract class BaseNumberCodeView extends RelativeLayout implements Adapt
             }
             mNumberStack.pop();
             mNumberViewList.get(mNumberStack.size()).setText(null);
-        } else if (mNumberStack.size() >= NUMBER_COUNT) {
+        } else if (mNumberStack.size() <= NUMBER_COUNT) {
             if (position == NUMBER_BUTTON_ZERO) {
                 mNumberStack.push(0);
             } else {

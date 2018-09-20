@@ -33,7 +33,7 @@
                     android:layout_centerInParent="true"
                     android:textColor="@color/text_color"
                     android:textSize="16sp"
-                    android:text="请输入"/>
+                    android:text=""/>
 
         </RelativeLayout>
 
